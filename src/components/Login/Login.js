@@ -2,12 +2,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as FaIcons from "react-icons/fa";
 import * as FcIcons from "react-icons/fc";
+import * as GrIcons from "react-icons/gr";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./Login.css";
 
 const Login = () => {
-   const { signInUsingGoogle, signInUsingGithub } = useAuth();
+   const {
+      signInUsingGoogle,
+      signInUsingGithub,
+      signInUsingYahoo,
+      signInUsingFacebook,
+   } = useAuth();
    // use location to track where the click came from
    const location = useLocation();
    const history = useHistory();
@@ -24,6 +30,18 @@ const Login = () => {
 
    const handleGithubSignIn = () => {
       signInUsingGithub().then((result) => {
+         history.push(redirect_url);
+      });
+   };
+
+   const handleYahooSignIn = () => {
+      signInUsingYahoo().then((result) => {
+         history.push(redirect_url);
+      });
+   };
+
+   const handleFacebookSignIn = () => {
+      signInUsingFacebook().then((result) => {
          history.push(redirect_url);
       });
    };
@@ -71,15 +89,33 @@ const Login = () => {
          <hr />
          <div>
             <h4>Sign in via</h4>
-            <button onClick={handleGoogleSignIn} className="btn_submit">
+            <button
+               style={{ color: "#000", margin: "0 5px" }}
+               onClick={handleGoogleSignIn}
+               className="btn_submit"
+            >
                <FcIcons.FcGoogle />
             </button>
             <button
-               style={{ color: "#000", margin: "0 10px" }}
+               style={{ color: "#000", margin: "0 5px" }}
                onClick={handleGithubSignIn}
                className="btn_submit"
             >
                <FaIcons.FaGithub />
+            </button>
+            <button
+               style={{ color: "blueviolet", margin: "0 5px" }}
+               onClick={handleYahooSignIn}
+               className="btn_submit"
+            >
+               <FaIcons.FaYahoo />
+            </button>
+            <button
+               style={{ color: "blue", margin: "0 5px" }}
+               onClick={handleFacebookSignIn}
+               className="btn_submit"
+            >
+               <GrIcons.GrFacebookOption />
             </button>
          </div>
       </div>

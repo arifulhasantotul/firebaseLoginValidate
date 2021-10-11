@@ -1,7 +1,9 @@
 import {
+   FacebookAuthProvider,
    getAuth,
    GithubAuthProvider,
    GoogleAuthProvider,
+   OAuthProvider,
    onAuthStateChanged,
    signInWithPopup,
    signOut,
@@ -18,6 +20,8 @@ const useFirebase = () => {
    const auth = getAuth();
    const googleProvider = new GoogleAuthProvider();
    const githubProvider = new GithubAuthProvider();
+   const yahooProvider = new OAuthProvider("yahoo.com");
+   const facebookProvider = new FacebookAuthProvider();
 
    const signInUsingGoogle = () => {
       return signInWithPopup(auth, googleProvider);
@@ -25,6 +29,14 @@ const useFirebase = () => {
 
    const signInUsingGithub = () => {
       return signInWithPopup(auth, githubProvider);
+   };
+
+   const signInUsingYahoo = () => {
+      return signInWithPopup(auth, yahooProvider);
+   };
+
+   const signInUsingFacebook = () => {
+      return signInWithPopup(auth, facebookProvider);
    };
 
    const handleLogout = () => {
@@ -50,6 +62,8 @@ const useFirebase = () => {
       error,
       signInUsingGoogle,
       signInUsingGithub,
+      signInUsingYahoo,
+      signInUsingFacebook,
       handleLogout,
    };
 };
