@@ -1,0 +1,76 @@
+.login-form {
+   width: 100%;
+   height: 80vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.login-form form input {
+   display: block;
+   font-size: 1.2rem;
+   margin-bottom: 20px;
+   padding: 4px 5px;
+   border-radius: 5px;
+   border: none;
+   border-bottom: 1px solid rgb(79, 98, 148);
+   min-width: 180px;
+   outline: none;
+}
+.login-form form input:focus {
+   outline: 1px dotted gray;
+}
+form {
+   max-width: 500px;
+   padding: 10px 6px 0 6px;
+}
+.error {
+   color: #bf1650;
+}
+
+.error::before {
+   display: inline;
+   content: "⚠ ";
+}
+input[type="submit"] {
+   background: #192a56;
+
+   color: white;
+   text-transform: uppercase;
+   border: none;
+   margin: 5px auto;
+   letter-spacing: 5px;
+   outline: none;
+   cursor: pointer;
+}
+input[type="submit"]:hover {
+   background: #304c94;
+}
+input[type="submit"]:active {
+   background: #304c94;
+   transition: 0.3s all;
+   transform: translateY(3px);
+   border: 1px solid transparent;
+   opacity: 0.8;
+}
+.btn_submit {
+   font-size: 1.2rem;
+   padding: 6px 10px;
+   border-radius: 3px;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   background: #249b56;
+
+   color: #fff;
+}
+.btn_submit:hover {
+   background: #30b668;
+}
+.btn_submit:active {
+   background: #30b668;
+   transition: 0.3s all;
+   transform: translateY(3px);
+   border: 1px solid transparent;
+   opacity: 0.8;
+}
