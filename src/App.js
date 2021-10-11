@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import About from "./components/About/About";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
@@ -7,6 +8,7 @@ import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
 import Order from "./components/Order/Order";
 import Pricing from "./components/Pricing/Pricing";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
 import Shop from "./components/Shop/Shop";
 
@@ -26,11 +28,14 @@ function App() {
                   <Route path="/shop">
                      <Shop></Shop>
                   </Route>
-                  <Route path="/order">
+                  <PrivateRoute path="/order">
                      <Order></Order>
-                  </Route>
-                  <Route path="/pricing">
+                  </PrivateRoute>
+                  <PrivateRoute path="/pricing">
                      <Pricing></Pricing>
+                  </PrivateRoute>
+                  <Route path="/about">
+                     <About></About>
                   </Route>
                   <Route path="/login">
                      <Login></Login>
