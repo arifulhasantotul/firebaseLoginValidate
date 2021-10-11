@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as FcIcons from "react-icons/fc";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "../Login/Login.css";
@@ -71,8 +72,9 @@ const Register = () => {
 
          <hr />
          <div>
+            <h4>Sign in via</h4>
             <button onClick={signInUsingGoogle} className="btn_submit">
-               Google Sign in
+               <FcIcons.FcGoogle />
             </button>
          </div>
       </div>

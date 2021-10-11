@@ -56,21 +56,22 @@ input[type="submit"]:active {
    opacity: 0.8;
 }
 .btn_submit {
-   font-size: 1.2rem;
+   font-size: 2rem;
    padding: 6px 10px;
    border-radius: 3px;
    border: none;
    outline: none;
    cursor: pointer;
-   background: #249b56;
+   /* background: #249b56; */
 
    color: #fff;
 }
 .btn_submit:hover {
-   background: #30b668;
+   /* background: #30b668; */
+   background: rgb(219, 215, 215);
 }
 .btn_submit:active {
-   background: #30b668;
+   /* background: #30b668; */
    transition: 0.3s all;
    transform: translateY(3px);
    border: 1px solid transparent;
