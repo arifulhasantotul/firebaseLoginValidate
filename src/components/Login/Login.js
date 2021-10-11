@@ -1,12 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as FcIcons from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./Login.css";
 
 const Login = () => {
    const { signInUsingGoogle } = useAuth();
+   // use location to track where the click came from
+   const location = useLocation();
+   const history = useHistory();
+
+   // location.state?.from is the clicked path address
+   const redirect_url = location.state?.from || "/home";
+   console.log("clicked from", location.state?.from);
+
+   const handleGoogleSignIn = () => {
+      signInUsingGoogle().then((result) => {
+         history.push(redirect_url);
+      });
+   };
 
    const {
       register,
@@ -51,7 +64,7 @@ const Login = () => {
          <hr />
          <div>
             <h4>Sign in via</h4>
-            <button onClick={signInUsingGoogle} className="btn_submit">
+            <button onClick={handleGoogleSignIn} className="btn_submit">
                <FcIcons.FcGoogle />
             </button>
          </div>
