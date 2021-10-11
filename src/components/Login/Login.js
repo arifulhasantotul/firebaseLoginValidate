@@ -19,22 +19,27 @@ const Login = () => {
          {/* "handleSubmit" will validate your inputs before invoking "onSubmit"
           */}
          <form onSubmit={handleSubmit(onSubmit)}>
-            {/* register your input into the hook by invoking the "register" function */}
-            <input
-               placeholder="name"
-               defaultValue=""
-               {...register("example")}
-            />
-
-            {/* include validation with required or other standard HTML validation rules */}
+            {/* email input field start  */}
             <input
                placeholder="email"
-               {...register("exampleRequired", { required: true })}
+               {...register("emailRequired", { required: true })}
             />
-            {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && (
-               <span className="error">This field is required</span>
+
+            {errors.emailRequired && (
+               <span className="error"> Email is required</span>
             )}
+            {/* email input field end  */}
+
+            {/* email input field start  */}
+            <input
+               placeholder="password"
+               {...register("passwordRequired", { required: true })}
+            />
+
+            {errors.passwordRequired && (
+               <span className="error"> Password is required</span>
+            )}
+            {/* email input field end  */}
 
             <input type="submit" />
          </form>

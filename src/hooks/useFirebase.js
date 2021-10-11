@@ -30,7 +30,7 @@ const useFirebase = () => {
    const handleLogout = () => {
       signOut(auth)
          .then(() => {
-            setError({});
+            setUser({});
          })
          .catch((error) => {
             setError(error.message);

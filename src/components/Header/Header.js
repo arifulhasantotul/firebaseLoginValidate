@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import "./Header.css";
 
 const Header = () => {
+   const { user, handleLogout } = useAuth();
    return (
       <div>
          <h2>Firebase Login Form</h2>
@@ -35,13 +37,18 @@ const Header = () => {
             >
                About
             </NavLink>
-            <NavLink
-               className="nav_item"
-               activeClassName="selected"
-               to="/login"
-            >
-               Login
-            </NavLink>
+            {user.email && <span>{user.displayName}</span>}
+            {user.email ? (
+               <button onClick={handleLogout}>Logout</button>
+            ) : (
+               <NavLink
+                  className="nav_item"
+                  activeClassName="selected"
+                  to="/login"
+               >
+                  Login
+               </NavLink>
+            )}
          </nav>
       </div>
    );

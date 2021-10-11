@@ -25,6 +25,8 @@ form {
    padding: 10px 6px 0 6px;
 }
 .error {
+   margin-top: -5px;
+   text-align: start;
    color: #bf1650;
 }
 
