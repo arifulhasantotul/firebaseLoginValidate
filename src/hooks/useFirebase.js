@@ -64,6 +64,7 @@ const useFirebase = () => {
       signInUsingGithub,
       signInUsingYahoo,
       signInUsingFacebook,
+
       handleLogout,
    };
 };
