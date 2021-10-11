@@ -37,8 +37,8 @@ const Header = () => {
             >
                About
             </NavLink>
-            {user.email && <span>{user.displayName}</span>}
-            {user.email ? (
+            {user.displayName && <span>{user.displayName}</span>}
+            {user.displayName ? (
                <button onClick={handleLogout}>Logout</button>
             ) : (
                <NavLink

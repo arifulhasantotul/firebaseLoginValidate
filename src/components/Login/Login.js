@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as FaIcons from "react-icons/fa";
 import * as FcIcons from "react-icons/fc";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./Login.css";
 
 const Login = () => {
-   const { signInUsingGoogle } = useAuth();
+   const { signInUsingGoogle, signInUsingGithub } = useAuth();
    // use location to track where the click came from
    const location = useLocation();
    const history = useHistory();
@@ -17,6 +18,12 @@ const Login = () => {
 
    const handleGoogleSignIn = () => {
       signInUsingGoogle().then((result) => {
+         history.push(redirect_url);
+      });
+   };
+
+   const handleGithubSignIn = () => {
+      signInUsingGithub().then((result) => {
          history.push(redirect_url);
       });
    };
@@ -66,6 +73,13 @@ const Login = () => {
             <h4>Sign in via</h4>
             <button onClick={handleGoogleSignIn} className="btn_submit">
                <FcIcons.FcGoogle />
+            </button>
+            <button
+               style={{ color: "#000", margin: "0 10px" }}
+               onClick={handleGithubSignIn}
+               className="btn_submit"
+            >
+               <FaIcons.FaGithub />
             </button>
          </div>
       </div>

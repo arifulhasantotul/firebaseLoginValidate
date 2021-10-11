@@ -1,5 +1,6 @@
 import {
    getAuth,
+   GithubAuthProvider,
    GoogleAuthProvider,
    onAuthStateChanged,
    signInWithPopup,
@@ -16,9 +17,14 @@ const useFirebase = () => {
 
    const auth = getAuth();
    const googleProvider = new GoogleAuthProvider();
+   const githubProvider = new GithubAuthProvider();
 
    const signInUsingGoogle = () => {
       return signInWithPopup(auth, googleProvider);
+   };
+
+   const signInUsingGithub = () => {
+      return signInWithPopup(auth, githubProvider);
    };
 
    const handleLogout = () => {
@@ -43,6 +49,7 @@ const useFirebase = () => {
       user,
       error,
       signInUsingGoogle,
+      signInUsingGithub,
       handleLogout,
    };
 };
