@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as FaIcons from "react-icons/fa";
 import * as FcIcons from "react-icons/fc";
@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import "./Login.css";
 
 const Login = () => {
+   const [error, setError] = useState("");
    const {
       signInUsingGoogle,
       signInUsingGithub,
@@ -23,27 +24,43 @@ const Login = () => {
    console.log("clicked from", location.state?.from);
 
    const handleGoogleSignIn = () => {
-      signInUsingGoogle().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingGoogle()
+         .then((result) => {
+            history.push(redirect_url);
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleGithubSignIn = () => {
-      signInUsingGithub().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingGithub()
+         .then((result) => {
+            history.push(redirect_url);
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleYahooSignIn = () => {
-      signInUsingYahoo().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingYahoo()
+         .then((result) => {
+            history.push(redirect_url);
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleFacebookSignIn = () => {
-      signInUsingFacebook().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingFacebook()
+         .then((result) => {
+            history.push(redirect_url);
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const {
@@ -79,6 +96,7 @@ const Login = () => {
                <span className="error"> Password is required</span>
             )}
             {/* email input field end  */}
+            {error && <div style={{ color: "red" }}>{error}</div>}
 
             <input type="submit" />
          </form>

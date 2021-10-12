@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as FaIcons from "react-icons/fa";
 import * as FcIcons from "react-icons/fc";
@@ -8,6 +8,8 @@ import useAuth from "../../hooks/useAuth";
 import "../Login/Login.css";
 
 const Register = () => {
+   const [error, setError] = useState("");
+
    const {
       signInUsingGoogle,
       signInUsingGithub,
@@ -21,30 +23,50 @@ const Register = () => {
 
    // location.state?.from is the clicked path address
    const redirect_url = location.state?.from || "/home";
-   console.log("clicked from", location.state?.from);
 
+   // working
    const handleGoogleSignIn = () => {
-      signInUsingGoogle().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingGoogle()
+         .then((result) => {
+            history.push(redirect_url);
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleGithubSignIn = () => {
-      signInUsingGithub().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingGithub()
+         .then((result) => {
+            history.push(redirect_url);
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleYahooSignIn = () => {
-      signInUsingYahoo().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingYahoo()
+         .then((result) => {
+            history.push(redirect_url);
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const handleFacebookSignIn = () => {
-      signInUsingFacebook().then((result) => {
-         history.push(redirect_url);
-      });
+      signInUsingFacebook()
+         .then((result) => {
+            history.push(redirect_url);
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
    };
 
    const {
@@ -52,7 +74,10 @@ const Register = () => {
       handleSubmit,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => console.log(data);
+   const onSubmit = (data) => {
+      console.log(data);
+   };
+
    return (
       <div className="login-form">
          <h2>Create Account</h2>
@@ -62,43 +87,37 @@ const Register = () => {
             {/* name input field start  */}
             <input
                placeholder="name"
-               {...register("nameRequired", { required: true })}
+               {...register("name", { required: true })}
             />
 
-            {errors.nameRequired && (
-               <div className="error"> Give full name</div>
-            )}
+            {errors.name && <div className="error"> Give full name</div>}
             {/* name input field end  */}
 
             {/* email input field start  */}
             <input
                placeholder="email"
-               {...register("emailRequired", { required: true })}
+               {...register("email", { required: true })}
             />
 
-            {errors.emailRequired && (
-               <div className="error"> Email is required</div>
-            )}
+            {errors.email && <div className="error"> Email is required</div>}
             {/* email input field end  */}
 
             {/* password input field start  */}
             <input
                placeholder="new password"
-               {...register("passwordRequired", { required: true })}
+               {...register("password", { required: true })}
             />
 
-            {errors.passwordRequired && (
-               <div className="error"> Give new password</div>
-            )}
+            {errors.password && <div className="error"> Give new password</div>}
             {/* password input field end  */}
 
             {/* re-enter password input field start  */}
             <input
                placeholder="Re-enter password"
-               {...register("checkPasswordRequired", { required: true })}
+               {...register("checkPassword", { required: true })}
             />
 
-            {errors.checkPasswordRequired && (
+            {errors.checkPassword && (
                <div className="error"> Re-enter new password</div>
             )}
             {/* re-enter password input field end  */}
@@ -108,6 +127,7 @@ const Register = () => {
          <p>
             already have an account? <Link to="/login">login</Link>{" "}
          </p>
+         {error && <div style={{ color: "red" }}>{error}</div>}
 
          <hr />
          <div>
