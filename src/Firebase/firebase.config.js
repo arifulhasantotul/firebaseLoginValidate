@@ -1,10 +1,10 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
-   apiKey: "AIzaSyDgrtidr5XZKlvL5G24N945dKtvLq_Z37c",
-   authDomain: "fir-login-validate.firebaseapp.com",
-   projectId: "fir-login-validate",
-   storageBucket: "fir-login-validate.appspot.com",
-   messagingSenderId: "809315985836",
-   appId: "1:809315985836:web:2e90f7dc2885c5d72a3209",
+   apiKey: "AIzaSyCv0JLHoxKGlaF6wWX3V3LR7hAu6cdT7nQ",
+   authDomain: "fir-login-validate-b5875.firebaseapp.com",
+   projectId: "fir-login-validate-b5875",
+   storageBucket: "fir-login-validate-b5875.appspot.com",
+   messagingSenderId: "41982600675",
+   appId: "1:41982600675:web:03bddf5d911a343118ecd6",
 };
 export default firebaseConfig;

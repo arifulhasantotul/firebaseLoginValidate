@@ -14,6 +14,7 @@ const Login = () => {
       signInUsingGithub,
       signInUsingYahoo,
       signInUsingFacebook,
+      signInUsingEmail,
    } = useAuth();
    // use location to track where the click came from
    const location = useLocation();
@@ -21,7 +22,7 @@ const Login = () => {
 
    // location.state?.from is the clicked path address
    const redirect_url = location.state?.from || "/home";
-   console.log("clicked from", location.state?.from);
+   // console.log("clicked from", location.state?.from);
 
    const handleGoogleSignIn = () => {
       signInUsingGoogle()
@@ -63,12 +64,26 @@ const Login = () => {
          });
    };
 
+   const handleEmailSignIn = (email, password) => {
+      signInUsingEmail(email, password)
+         .then((result) => {
+            history.push(redirect_url);
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
+   };
+
    const {
       register,
       handleSubmit,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => console.log(data);
+   const onSubmit = (data) => {
+      console.log(data);
+      handleEmailSignIn(data.email, data.password);
+   };
    return (
       <div className="login-form">
          <h2>Login</h2>
@@ -78,21 +93,19 @@ const Login = () => {
             {/* email input field start  */}
             <input
                placeholder="email"
-               {...register("emailRequired", { required: true })}
+               {...register("email", { required: true })}
             />
 
-            {errors.emailRequired && (
-               <span className="error"> Email is required</span>
-            )}
+            {errors.email && <span className="error"> Email is required</span>}
             {/* email input field end  */}
 
             {/* email input field start  */}
             <input
                placeholder="password"
-               {...register("passwordRequired", { required: true })}
+               {...register("password", { required: true })}
             />
 
-            {errors.passwordRequired && (
+            {errors.password && (
                <span className="error"> Password is required</span>
             )}
             {/* email input field end  */}

@@ -15,6 +15,7 @@ const Register = () => {
       signInUsingGithub,
       signInUsingYahoo,
       signInUsingFacebook,
+      registerUsingEmail,
    } = useAuth();
 
    // use location to track where the click came from
@@ -69,13 +70,25 @@ const Register = () => {
          });
    };
 
+   const handleRegisterUser = (email, password, checkPassword) => {
+      registerUsingEmail(email, password, checkPassword)
+         .then((result) => {
+            history.push("/login");
+            setError("");
+         })
+         .catch((error) => {
+            setError(error.message);
+         });
+   };
+
    const {
       register,
       handleSubmit,
       formState: { errors },
    } = useForm();
+
    const onSubmit = (data) => {
-      console.log(data);
+      handleRegisterUser(data.email, data.password, data.checkPassword);
    };
 
    return (

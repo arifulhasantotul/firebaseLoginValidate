@@ -1,4 +1,6 @@
 import {
+   createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
    FacebookAuthProvider,
    getAuth,
    GithubAuthProvider,
@@ -39,6 +41,24 @@ const useFirebase = () => {
       return signInWithPopup(auth, facebookProvider);
    };
 
+   const registerUsingEmail = (email, password, checkPassword) => {
+      console.log(email, password, checkPassword);
+      if (password.length < 8) {
+         setError("Password should be more then 8 characters");
+         return;
+      }
+      if (password !== checkPassword) {
+         setError("Both password should be same");
+         return;
+      }
+
+      return createUserWithEmailAndPassword(auth, email, password);
+   };
+
+   const signInUsingEmail = (email, password) => {
+      return signInWithEmailAndPassword(auth, email, password);
+   };
+
    const handleLogout = () => {
       signOut(auth)
          .then(() => {
@@ -58,12 +78,15 @@ const useFirebase = () => {
    }, [auth]);
 
    return {
+      auth,
       user,
       error,
       signInUsingGoogle,
       signInUsingGithub,
       signInUsingYahoo,
       signInUsingFacebook,
+      registerUsingEmail,
+      signInUsingEmail,
       handleLogout,
    };
 };
